@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="酌酒的博客">
 <meta property="og:description" content="描述给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。 请你找出这两个有序数组的中位数。 你可以假设 nums1 和 nums2 不会同时为空。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-15T07:21:58.650Z">
+<meta property="og:updated_time" content="2019-06-15T07:26:44.387Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="寻找两个有序数组的中位数">
 <meta name="twitter:description" content="描述给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。 请你找出这两个有序数组的中位数。 你可以假设 nums1 和 nums2 不会同时为空。">
@@ -180,12 +180,12 @@
 <p>但是有没有更高效一点的方法呢。</p>
 <p>这时候我们可以考虑一下中位数的概念，在一个有序数组中，中位数左边所有数都小于他，右边所有数都大于他，这时候便可以转换成右边的最小值大于左边的最大值。</p>
 <p>然后思考一下如果将两个序列合成同一个呢，</p>
-<p>首先，让我们在任一位置 ii 将 \text{A}A 划分成两个部分：</p>
+<p>首先，让我们在任一位置 i 将 A 划分成两个部分：</p>
 <pre><code>      left_A             |        right_A
 A[0], A[1], ..., A[i-1]  |  A[i], A[i+1], ..., A[m-1]
 </code></pre><p>由于A 中有 m 个元素， 所以我们有 m+1种划分的方法（i=0∼m）。</p>
 <p>我们知道：</p>
-<p>text(left_A) = i,len(right_A) = m - </p>
+<p>len(left_A) = i,len(right_A) = m - i</p>
 <p>注意：当 i = 0 时，left_A 为空集， 而当 i = m 时, right_A 为空集。</p>
 <p>采用同样的方式，我们在任一位置 j 将 B 划分成两个部分：</p>
 <pre><code>      left_B             |        right_B
@@ -414,15 +414,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">中位数技巧</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">容斥原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">贪心</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -430,7 +422,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">最短路</a>
+                <a href="javascript:void(0)" class="js-tag color3">贪心</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -439,6 +431,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">单调队列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">中位数技巧</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">最短路</a>
               </li>
             
             <div class="clearfix"></div>
