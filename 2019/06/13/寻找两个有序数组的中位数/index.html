@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="酌酒的博客">
 <meta property="og:description" content="描述给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。 请你找出这两个有序数组的中位数。 你可以假设 nums1 和 nums2 不会同时为空。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-13T03:20:20.369Z">
+<meta property="og:updated_time" content="2019-06-15T07:21:58.650Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="寻找两个有序数组的中位数">
 <meta name="twitter:description" content="描述给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。 请你找出这两个有序数组的中位数。 你可以假设 nums1 和 nums2 不会同时为空。">
@@ -187,7 +187,7 @@ A[0], A[1], ..., A[i-1]  |  A[i], A[i+1], ..., A[m-1]
 <p>我们知道：</p>
 <p>text(left_A) = i,len(right_A) = m - </p>
 <p>注意：当 i = 0 时，left_A 为空集， 而当 i = m 时, right_A 为空集。</p>
-<p>采用同样的方式，我们在任一位置 jj 将 \text{B}B 划分成两个部分：</p>
+<p>采用同样的方式，我们在任一位置 j 将 B 划分成两个部分：</p>
 <pre><code>      left_B             |        right_B
 B[0], B[1], ..., B[j-1]  |  B[j], B[j+1], ..., B[n-1]
 </code></pre><p>将 left_A 和 left_B 放入一个集合，并将 right_A 和 right_B 放入另一个集合。 再把这两个新的集合分别命名为 left_part 和 right_part：</p>
@@ -414,15 +414,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">中位数技巧</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">贪心</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -430,7 +422,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单调队列</a>
+                <a href="javascript:void(0)" class="js-tag color3">贪心</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">最短路</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -438,7 +438,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">最短路</a>
+                <a href="javascript:void(0)" class="js-tag color5">单调队列</a>
               </li>
             
             <div class="clearfix"></div>
