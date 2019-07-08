@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://www.zhuojiuw.top">
   <title>酌酒的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="拓扑排序看了一下别人的博客，感觉蛮简单的，懒得自己写了，直接复制一下。 在一个有向图中，对所有的节点进行排序，要求没有一个节点指向它前面的节点。 先统计所有节点的入度，对于入度为0的节点就可以分离出来，然后把这个节点指向的节点的入度减一。 一直做该操作，直到所有的节点都被分离出来。 如果最后不存在入度为0的节点，那就说明有环，不存在拓扑排序，也就是很多题目的无解的情况。 下面是算法的演示过程。 1">
+  <meta name="description" content="拓扑排序看了一下别人的博客，感觉蛮简单的，懒得自己写了，直接复制一下。">
 <meta name="keywords" content="acm混分选手">
 <meta property="og:type" content="article">
 <meta property="og:title" content="酌酒的博客">
 <meta property="og:url" content="http://www.zhuojiuw.top/2019/07/08/拓扑排序/index.html">
 <meta property="og:site_name" content="酌酒的博客">
-<meta property="og:description" content="拓扑排序看了一下别人的博客，感觉蛮简单的，懒得自己写了，直接复制一下。 在一个有向图中，对所有的节点进行排序，要求没有一个节点指向它前面的节点。 先统计所有节点的入度，对于入度为0的节点就可以分离出来，然后把这个节点指向的节点的入度减一。 一直做该操作，直到所有的节点都被分离出来。 如果最后不存在入度为0的节点，那就说明有环，不存在拓扑排序，也就是很多题目的无解的情况。 下面是算法的演示过程。 1">
+<meta property="og:description" content="拓扑排序看了一下别人的博客，感觉蛮简单的，懒得自己写了，直接复制一下。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://img-blog.csdn.net/20180625175824103?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzEzMjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:updated_time" content="2019-07-08T07:18:42.218Z">
+<meta property="og:updated_time" content="2019-07-08T07:26:55.896Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="酌酒的博客">
-<meta name="twitter:description" content="拓扑排序看了一下别人的博客，感觉蛮简单的，懒得自己写了，直接复制一下。 在一个有向图中，对所有的节点进行排序，要求没有一个节点指向它前面的节点。 先统计所有节点的入度，对于入度为0的节点就可以分离出来，然后把这个节点指向的节点的入度减一。 一直做该操作，直到所有的节点都被分离出来。 如果最后不存在入度为0的节点，那就说明有环，不存在拓扑排序，也就是很多题目的无解的情况。 下面是算法的演示过程。 1">
+<meta name="twitter:description" content="拓扑排序看了一下别人的博客，感觉蛮简单的，懒得自己写了，直接复制一下。">
 <meta name="twitter:image" content="https://img-blog.csdn.net/20180625175824103?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzEzMjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
   
     <link rel="alternative" href="/atom.xml" title="酌酒的博客" type="application/atom+xml">
@@ -156,6 +156,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h1><p>看了一下别人的博客，感觉蛮简单的，懒得自己写了，直接复制一下。</p>
+<a id="more"></a>
 <p>在一个有向图中，对所有的节点进行排序，要求没有一个节点指向它前面的节点。</p>
 <p>先统计所有节点的入度，对于入度为0的节点就可以分离出来，然后把这个节点指向的节点的入度减一。</p>
 <p>一直做该操作，直到所有的节点都被分离出来。</p>
@@ -368,11 +369,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">贪心</a>
+                <a href="javascript:void(0)" class="js-tag color5">容斥原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
+                <a href="javascript:void(0)" class="js-tag color3">贪心</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -380,15 +381,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">容斥原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单调队列</a>
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">搜索</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单调队列</a>
               </li>
              
               <li class="article-tag-list-item">
