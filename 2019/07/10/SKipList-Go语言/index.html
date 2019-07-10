@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.zhuojiuw.top">
-  <title>寻找两个有序数组的中位数 | 酌酒的博客</title>
+  <title>SKipList Go语言 | 酌酒的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="描述给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。 请你找出这两个有序数组的中位数。 你可以假设 nums1 和 nums2 不会同时为空。">
-<meta name="keywords" content="中位数技巧">
+  <meta name="description" content="花了四天时间，把go的基础东西看完了，把SkipList搞了搞，不过中间有很多go特有的东西还不太会，也要在中间不断的去学，这是第一篇，记录一下">
+<meta name="keywords" content="数据结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="寻找两个有序数组的中位数">
-<meta property="og:url" content="http://www.zhuojiuw.top/2019/06/13/寻找两个有序数组的中位数/index.html">
+<meta property="og:title" content="SKipList Go语言">
+<meta property="og:url" content="http://www.zhuojiuw.top/2019/07/10/SKipList-Go语言/index.html">
 <meta property="og:site_name" content="酌酒的博客">
-<meta property="og:description" content="描述给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。 请你找出这两个有序数组的中位数。 你可以假设 nums1 和 nums2 不会同时为空。">
+<meta property="og:description" content="花了四天时间，把go的基础东西看完了，把SkipList搞了搞，不过中间有很多go特有的东西还不太会，也要在中间不断的去学，这是第一篇，记录一下">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-15T07:26:44.387Z">
+<meta property="og:updated_time" content="2019-07-10T06:48:50.040Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="寻找两个有序数组的中位数">
-<meta name="twitter:description" content="描述给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。 请你找出这两个有序数组的中位数。 你可以假设 nums1 和 nums2 不会同时为空。">
+<meta name="twitter:title" content="SKipList Go语言">
+<meta name="twitter:description" content="花了四天时间，把go的基础东西看完了，把SkipList搞了搞，不过中间有很多go特有的东西还不太会，也要在中间不断的去学，这是第一篇，记录一下">
   
     <link rel="alternative" href="/atom.xml" title="酌酒的博客" type="application/atom+xml">
   
@@ -148,56 +148,29 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-寻找两个有序数组的中位数" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-SKipList-Go语言" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      寻找两个有序数组的中位数
+      SKipList Go语言
     </h1>
   
 
         
-        <a href="/2019/06/13/寻找两个有序数组的中位数/" class="archive-article-date">
-  	<time datetime="2019-06-13T02:55:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-13</time>
+        <a href="/2019/07/10/SKipList-Go语言/" class="archive-article-date">
+  	<time datetime="2019-07-10T06:45:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。</p>
-<p>请你找出这两个有序数组的中位数。</p>
-<p>你可以假设 nums1 和 nums2 不会同时为空。</p>
+        <p>花了四天时间，把go的基础东西看完了，把SkipList搞了搞，不过中间有很多go特有的东西还不太会，也要在中间不断的去学，这是第一篇，记录一下</p>
 <a id="more"></a>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1:"></a>示例 1:</h3><p>nums1 = [1, 3]<br>nums2 = [2]</p>
-<p>则中位数是 2.0</p>
-<h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2:"></a>示例 2:</h3><p>nums1 = [1, 2]<br>nums2 = [3, 4]</p>
-<p>则中位数是 (2 + 3)/2 = 2.5</p>
-<p>在做这一题的时候第一眼的的思路很简单，直接放到同一个数组中sort一下就好了，时间复杂度O(n*logn)，也可以接受。</p>
-<p>但是有没有更高效一点的方法呢。</p>
-<p>这时候我们可以考虑一下中位数的概念，在一个有序数组中，中位数左边所有数都小于他，右边所有数都大于他，这时候便可以转换成右边的最小值大于左边的最大值。</p>
-<p>然后思考一下如果将两个序列合成同一个呢，</p>
-<p>首先，让我们在任一位置 i 将 A 划分成两个部分：</p>
-<pre><code>      left_A             |        right_A
-A[0], A[1], ..., A[i-1]  |  A[i], A[i+1], ..., A[m-1]
-</code></pre><p>由于A 中有 m 个元素， 所以我们有 m+1种划分的方法（i=0∼m）。</p>
-<p>我们知道：</p>
-<p>len(left_A) = i,len(right_A) = m - i</p>
-<p>注意：当 i = 0 时，left_A 为空集， 而当 i = m 时, right_A 为空集。</p>
-<p>采用同样的方式，我们在任一位置 j 将 B 划分成两个部分：</p>
-<pre><code>      left_B             |        right_B
-B[0], B[1], ..., B[j-1]  |  B[j], B[j+1], ..., B[n-1]
-</code></pre><p>将 left_A 和 left_B 放入一个集合，并将 right_A 和 right_B 放入另一个集合。 再把这两个新的集合分别命名为 left_part 和 right_part：</p>
-<pre><code>      left_part          |        right_part
-A[0], A[1], ..., A[i-1]  |  A[i], A[i+1], ..., A[m-1]
-B[0], B[1], ..., B[j-1]  |  B[j], B[j+1], ..., B[n-1]
-</code></pre><p>这时候只要我们确认两个条件，左边的数的数目等于右边的数的数目，并且左边的最大值小于右边的最小值，那么划分便成功了。</p>
-<p>而左边的最大值必定是A[i-1]或B[j-1]，右边的最小值必定是A[i]或B[j]，而A[i-1]&lt;A[i],B[j-1]&lt;B[j]，所以我们只需要判断两个条件便能确定大小A[i-1]&lt;B[j]?  B[j-1]&lt;A[i]?</p>
-<p>因为要确定两侧长度相等，所以当确定了i的值，j的值便也确定了。j=(m+n+1)/2−i。为保证j不为负数，所以要求A的长度较小。</p>
-<p>大体思路就是这些，另外还有一些边界条件之类的问题，就不在这说了，自己思考一下就可以实现。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SkipList</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"math/rand"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> MaxLevel <span class="keyword">int</span> = <span class="number">32</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> SkipListNode <span class="keyword">struct</span> &#123;</span><br><span class="line">	data <span class="keyword">int</span></span><br><span class="line">	next []*SkipListNode</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> SkipList <span class="keyword">struct</span> &#123;</span><br><span class="line">	head   *SkipListNode</span><br><span class="line">	tail   *SkipListNode</span><br><span class="line">	length <span class="keyword">int</span></span><br><span class="line">	level  <span class="keyword">int</span></span><br><span class="line">	rand   *rand.Rand</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	sl := NewSkipList(<span class="number">6</span>)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">100</span>; i++ &#123;</span><br><span class="line">		sl.Insert(i)</span><br><span class="line">	&#125;</span><br><span class="line">	sl.PrintSkipList()</span><br><span class="line">	fmt.Println(sl.Search(<span class="number">2</span>))</span><br><span class="line">	sl.Remove(<span class="number">2</span>)</span><br><span class="line">	fmt.Println(sl.Search(<span class="number">2</span>))</span><br><span class="line">	sl.PrintSkipList()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(list *SkipList)</span> <span class="title">randomlevel</span><span class="params">()</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	level := <span class="number">1</span></span><br><span class="line">	<span class="keyword">for</span> level &lt; list.level &amp;&amp; list.rand.Uint32()&amp;<span class="number">0x1</span> == <span class="number">1</span> &#123;</span><br><span class="line">		level++</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> level</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewSkipList</span><span class="params">(level <span class="keyword">int</span>)</span> *<span class="title">SkipList</span></span> &#123;</span><br><span class="line">	list := &amp;SkipList&#123;&#125;</span><br><span class="line">	list.level = level</span><br><span class="line">	list.head = &amp;SkipListNode&#123;next: <span class="built_in">make</span>([]*SkipListNode, level)&#125;</span><br><span class="line">	list.tail = &amp;SkipListNode&#123;&#125;</span><br><span class="line">	list.rand = rand.New(rand.NewSource(time.Now().UnixNano()))</span><br><span class="line">	<span class="keyword">for</span> i := <span class="keyword">range</span> list.head.next &#123;</span><br><span class="line">		list.head.next[i] = list.tail</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> list</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(list *SkipList)</span> <span class="title">Search</span><span class="params">(key <span class="keyword">int</span>)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">	node1 := list.head</span><br><span class="line">	<span class="keyword">for</span> i := <span class="built_in">len</span>(node1.next) - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i-- &#123;</span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			node2 := node1.next[i]</span><br><span class="line">			<span class="keyword">if</span> node2 == list.tail || node2.data &gt; key &#123;</span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> node2.data == key &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				node1 = node2</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(list *SkipList)</span> <span class="title">Insert</span><span class="params">(key <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	level := list.randomlevel()</span><br><span class="line">	update := <span class="built_in">make</span>([]*SkipListNode, level, level)</span><br><span class="line">	node1 := list.head</span><br><span class="line">	<span class="keyword">for</span> i := level - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i-- &#123;</span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			node2 := node1.next[i]</span><br><span class="line">			<span class="keyword">if</span> node2 == list.tail || node2.data &gt; key &#123;</span><br><span class="line">				update[i] = node1</span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> node2.data == key &#123;</span><br><span class="line">				<span class="keyword">return</span></span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				node1 = node2</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	NewNode := &amp;SkipListNode&#123;key, <span class="built_in">make</span>([]*SkipListNode, level, level)&#125;</span><br><span class="line">	<span class="keyword">for</span> i, node := <span class="keyword">range</span> update &#123;</span><br><span class="line">		node.next[i], NewNode.next[i] = NewNode, node.next[i]</span><br><span class="line">	&#125;</span><br><span class="line">	list.length++</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(list *SkipList)</span> <span class="title">Remove</span><span class="params">(key <span class="keyword">int</span>)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">	node1 := list.head</span><br><span class="line">	update := <span class="built_in">make</span>([]*SkipListNode, list.level, list.level)</span><br><span class="line">	<span class="keyword">var</span> target *SkipListNode</span><br><span class="line">	<span class="keyword">for</span> i := <span class="built_in">len</span>(node1.next) - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i-- &#123;</span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			node2 := node1.next[i]</span><br><span class="line">			<span class="keyword">if</span> node2 == list.tail || node2.data &gt; key &#123;</span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> node2.data == key &#123;</span><br><span class="line">				update[i] = node1</span><br><span class="line">				target = node2</span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				node1 = node2</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> target != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">for</span> i, node1 := <span class="keyword">range</span> update &#123;</span><br><span class="line">			<span class="keyword">if</span> node1 != <span class="literal">nil</span> &#123;</span><br><span class="line">				node1.next[i] = target.next[i]</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		list.length--</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(list *SkipList)</span> <span class="title">PrintSkipList</span><span class="params">()</span></span> &#123;</span><br><span class="line">	node1 := list.head</span><br><span class="line">	<span class="keyword">for</span> i := list.level - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i-- &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"Level %d:\n"</span>, i)</span><br><span class="line">		node2 := node1.next[i]</span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> node2 == list.tail &#123;</span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				fmt.Printf(<span class="string">"%d "</span>, node2.data)</span><br><span class="line">				node2 = node2.next[i]</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		fmt.Println()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -211,7 +184,7 @@ B[0], B[1], ..., B[j-1]  |  B[j], B[j+1], ..., B[n-1]
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">中位数技巧</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
@@ -267,7 +240,7 @@ B[0], B[1], ..., B[j-1]  |  B[j], B[j+1], ..., B[n-1]
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.zhuojiuw.top/2019/06/13/寻找两个有序数组的中位数/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.zhuojiuw.top/2019/07/10/SKipList-Go语言/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -281,18 +254,9 @@ B[0], B[1], ..., B[j-1]  |  B[j], B[j+1], ..., B[n-1]
   
 <nav id="article-nav">
   
-    <a href="/2019/07/08/拓扑排序/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          拓扑排序
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/06/06/可以后悔的贪心/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">可以后悔的贪心</div>
+    <a href="/2019/07/08/拓扑排序/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">拓扑排序</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -319,7 +283,7 @@ B[0], B[1], ..., B[j-1]  |  B[j], B[j+1], ..., B[n-1]
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#描述"><span class="toc-number">1.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-number">2.</span> <span class="toc-text">示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#示例-1"><span class="toc-number">2.1.</span> <span class="toc-text">示例 1:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例-2"><span class="toc-number">2.2.</span> <span class="toc-text">示例 2:</span></a></li></ol></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
