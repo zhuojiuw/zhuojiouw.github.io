@@ -8,23 +8,23 @@
   <link rel="dns-prefetch" href="http://www.zhuojiuw.top">
   <title>manacher | 酌酒的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="manachermanacher算法用于求最长回文子串，并且可以把时间复杂度控制在$O(n)$。 算法流程1.预处理因为字符串的长度有奇数与偶数之分，如果直接计算还要分情况，所以我们可以在每个字符左右加上一个在字符串中未出现过的字符，得到一个新的字符数组newStr[]，且易于证明新串长度为奇数 2.辅助数组接下来我们需要一个辅助数组p[]，p[i]表示以字符newStr[i]为中心的最长回文半径">
+  <meta name="description" content="manachermanacher算法用于求最长回文子串，并且可以把时间复杂度控制在$O(n)$。">
 <meta name="keywords" content="字符串">
 <meta property="og:type" content="article">
 <meta property="og:title" content="manacher">
 <meta property="og:url" content="http://www.zhuojiuw.top/2019/08/25/manacher/index.html">
 <meta property="og:site_name" content="酌酒的博客">
-<meta property="og:description" content="manachermanacher算法用于求最长回文子串，并且可以把时间复杂度控制在$O(n)$。 算法流程1.预处理因为字符串的长度有奇数与偶数之分，如果直接计算还要分情况，所以我们可以在每个字符左右加上一个在字符串中未出现过的字符，得到一个新的字符数组newStr[]，且易于证明新串长度为奇数 2.辅助数组接下来我们需要一个辅助数组p[]，p[i]表示以字符newStr[i]为中心的最长回文半径">
+<meta property="og:description" content="manachermanacher算法用于求最长回文子串，并且可以把时间复杂度控制在$O(n)$。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190225194515351.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE4MTU0MDQ=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190225194435626.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE4MTU0MDQ=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190225194526481.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE4MTU0MDQ=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190225194449392.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE4MTU0MDQ=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190225194502441.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE4MTU0MDQ=,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-08-25T11:32:29.435Z">
+<meta property="og:updated_time" content="2019-08-25T11:34:52.930Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="manacher">
-<meta name="twitter:description" content="manachermanacher算法用于求最长回文子串，并且可以把时间复杂度控制在$O(n)$。 算法流程1.预处理因为字符串的长度有奇数与偶数之分，如果直接计算还要分情况，所以我们可以在每个字符左右加上一个在字符串中未出现过的字符，得到一个新的字符数组newStr[]，且易于证明新串长度为奇数 2.辅助数组接下来我们需要一个辅助数组p[]，p[i]表示以字符newStr[i]为中心的最长回文半径">
+<meta name="twitter:description" content="manachermanacher算法用于求最长回文子串，并且可以把时间复杂度控制在$O(n)$。">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190225194515351.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE4MTU0MDQ=,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title="酌酒的博客" type="application/atom+xml">
@@ -175,6 +175,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="manacher"><a href="#manacher" class="headerlink" title="manacher"></a>manacher</h2><p>manacher算法用于求最长回文子串，并且可以把时间复杂度控制在$O(n)$。</p>
+<a id="more"></a>
 <h4 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h4><h6 id="1-预处理"><a href="#1-预处理" class="headerlink" title="1.预处理"></a>1.预处理</h6><p>因为字符串的长度有奇数与偶数之分，如果直接计算还要分情况，所以我们可以在每个字符左右加上一个在字符串中未出现过的字符，得到一个新的字符数组newStr[]，且易于证明新串长度为奇数</p>
 <h6 id="2-辅助数组"><a href="#2-辅助数组" class="headerlink" title="2.辅助数组"></a>2.辅助数组</h6><p>接下来我们需要一个辅助数组p[]，p[i]表示以字符newStr[i]为中心的最长回文半径，若p[i]=1，则该回文子串就是newStr[i]本身。<br>可以随便找个字符串手动推一下，可知p[i]-1便是原字符串最长回文串的长度。</p>
 <h6 id="3-求辅助数组"><a href="#3-求辅助数组" class="headerlink" title="3.求辅助数组"></a>3.求辅助数组</h6><p>首先设置两个变量mx和id，mx代表以id为中心的最长回文串的右边界。即mx=id+p[id]<br>假设求以i为中心的最长回文半径，即求p[i]，当i&lt;mx时，则有$p[i]=min(p[2*id-i],mx-i)$，否则p[i]=1。</p>
@@ -420,7 +421,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -428,15 +429,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">贪心</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">拓扑排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">中位数技巧</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -445,14 +454,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">最短路</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">拓扑排序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
               </li>
             
             <div class="clearfix"></div>
