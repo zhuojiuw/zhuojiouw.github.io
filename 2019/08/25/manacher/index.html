@@ -6,19 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.zhuojiuw.top">
-  <title>酌酒的博客</title>
+  <title>manacher | 酌酒的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="河北师大蒟蒻一枚">
-<meta name="keywords" content="acm混分选手">
-<meta property="og:type" content="website">
-<meta property="og:title" content="酌酒的博客">
-<meta property="og:url" content="http://www.zhuojiuw.top/index.html">
+  <meta name="description" content="manachermanacher算法用于求最长回文子串，并且可以把时间复杂度控制在$O(n)$。 算法流程1.预处理因为字符串的长度有奇数与偶数之分，如果直接计算还要分情况，所以我们可以在每个字符左右加上一个在字符串中未出现过的字符，得到一个新的字符数组newStr[]，且易于证明新串长度为奇数 2.辅助数组接下来我们需要一个辅助数组p[]，p[i]表示以字符newStr[i]为中心的最长回文半径">
+<meta name="keywords" content="manacher">
+<meta property="og:type" content="article">
+<meta property="og:title" content="manacher">
+<meta property="og:url" content="http://www.zhuojiuw.top/2019/08/25/manacher/index.html">
 <meta property="og:site_name" content="酌酒的博客">
-<meta property="og:description" content="河北师大蒟蒻一枚">
+<meta property="og:description" content="manachermanacher算法用于求最长回文子串，并且可以把时间复杂度控制在$O(n)$。 算法流程1.预处理因为字符串的长度有奇数与偶数之分，如果直接计算还要分情况，所以我们可以在每个字符左右加上一个在字符串中未出现过的字符，得到一个新的字符数组newStr[]，且易于证明新串长度为奇数 2.辅助数组接下来我们需要一个辅助数组p[]，p[i]表示以字符newStr[i]为中心的最长回文半径">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190225194515351.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE4MTU0MDQ=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190225194435626.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE4MTU0MDQ=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190225194526481.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE4MTU0MDQ=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190225194449392.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE4MTU0MDQ=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190225194502441.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE4MTU0MDQ=,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-08-25T11:26:46.950Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="酌酒的博客">
-<meta name="twitter:description" content="河北师大蒟蒻一枚">
+<meta name="twitter:title" content="manacher">
+<meta name="twitter:description" content="manachermanacher算法用于求最长回文子串，并且可以把时间复杂度控制在$O(n)$。 算法流程1.预处理因为字符串的长度有奇数与偶数之分，如果直接计算还要分情况，所以我们可以在每个字符左右加上一个在字符串中未出现过的字符，得到一个新的字符数组newStr[]，且易于证明新串长度为奇数 2.辅助数组接下来我们需要一个辅助数组p[]，p[i]表示以字符newStr[i]为中心的最长回文半径">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190225194515351.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE4MTU0MDQ=,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title="酌酒的博客" type="application/atom+xml">
   
@@ -147,16 +154,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-manacher" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-manacher" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/25/manacher/">manacher</a>
+    <h1 class="article-title" itemprop="name">
+      manacher
     </h1>
   
 
@@ -212,16 +217,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/25/manacher/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.zhuojiuw.top/2019/08/25/manacher/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/10/SKipList-Go语言/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SKipList Go语言</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -236,702 +300,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SKipList-Go语言" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/10/SKipList-Go语言/">SKipList Go语言</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/10/SKipList-Go语言/" class="archive-article-date">
-  	<time datetime="2019-07-10T06:45:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>花了四天时间，把go的基础东西看完了，把SkipList搞了搞，不过中间有很多go特有的东西还不太会，也要在中间不断的去学，这是第一篇，记录一下</p>
-        
-          <a class="article-more-a" href="/2019/07/10/SKipList-Go语言/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/10/SKipList-Go语言/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#manacher"><span class="toc-number">1.</span> <span class="toc-text">manacher</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#算法流程"><span class="toc-number">1.0.1.</span> <span class="toc-text">算法流程</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-预处理"><span class="toc-number">1.0.1.0.1.</span> <span class="toc-text">1.预处理</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-辅助数组"><span class="toc-number">1.0.1.0.2.</span> <span class="toc-text">2.辅助数组</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-求辅助数组"><span class="toc-number">1.0.1.0.3.</span> <span class="toc-text">3.求辅助数组</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法实现"><span class="toc-number">1.0.2.</span> <span class="toc-text">算法实现</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-拓扑排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/08/拓扑排序/">拓扑排序</a>
-    </h1>
   
 
-        
-        <a href="/2019/07/08/拓扑排序/" class="archive-article-date">
-  	<time datetime="2019-07-08T07:31:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h1><p>看了一下别人的博客，感觉蛮简单的，懒得自己写了，直接复制一下。</p>
-        
-          <a class="article-more-a" href="/2019/07/08/拓扑排序/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">拓扑排序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/08/拓扑排序/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-寻找两个有序数组的中位数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/13/寻找两个有序数组的中位数/">寻找两个有序数组的中位数</a>
-    </h1>
   
 
-        
-        <a href="/2019/06/13/寻找两个有序数组的中位数/" class="archive-article-date">
-  	<time datetime="2019-06-13T02:55:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。</p>
-<p>请你找出这两个有序数组的中位数。</p>
-<p>你可以假设 nums1 和 nums2 不会同时为空。</p>
-        
-          <a class="article-more-a" href="/2019/06/13/寻找两个有序数组的中位数/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">中位数技巧</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/13/寻找两个有序数组的中位数/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-可以后悔的贪心" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/06/可以后悔的贪心/">可以后悔的贪心</a>
-    </h1>
   
 
-        
-        <a href="/2019/06/06/可以后悔的贪心/" class="archive-article-date">
-  	<time datetime="2019-06-06T01:51:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><p>某天mdl来到了商场，她看中了商场中的N(1&lt;=N&lt;=50000)件商品，她有M(1&lt;=M&lt;=10^14)元，同时她还有K(1&lt;=K&lt;=N)张本商场的优惠券。第i件商品的价格为Pi(1&lt;=Pi&lt;=10^9)元，如果她使用优惠券则该商品的价格为Ci(1&lt;=Ci&lt;=Pi)元。mdl的钱可能不够，但他还想买尽可能多的商品，问mdl最多可以买到多少件商品。</p>
-        
-          <a class="article-more-a" href="/2019/06/06/可以后悔的贪心/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">贪心</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/06/可以后悔的贪心/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-最大子序和-单调队列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/04/最大子序和-单调队列/">最大子序和 单调队列</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/04/最大子序和-单调队列/" class="archive-article-date">
-  	<time datetime="2019-06-04T02:01:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>输入一个长度为n的整数序列，从中找出一段不超过M的连续子序列，使得整个序列的和最大。</p>
-        
-          <a class="article-more-a" href="/2019/06/04/最大子序和-单调队列/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">单调队列</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/04/最大子序和-单调队列/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-HDU-4135" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/01/HDU-4135/">HDU 4135</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/01/HDU-4135/" class="archive-article-date">
-  	<time datetime="2019-06-01T12:45:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>第一行给出一个正整数t代表数据组数，</p>
-<p>接下来t行每行给出三个数A,B,N;</p>
-<p>输出[A,B]内与N互斥的数。</p>
-        
-          <a class="article-more-a" href="/2019/06/01/HDU-4135/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">容斥原理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/01/HDU-4135/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-搜索基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/31/搜索基础/">搜索基础</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/31/搜索基础/" class="archive-article-date">
-  	<time datetime="2019-05-31T03:09:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>太久不做都快忘掉搜索板子怎么敲了。</p>
-<p>在这重新熟悉一下，也把板子存一下。</p>
-        
-          <a class="article-more-a" href="/2019/05/31/搜索基础/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">搜索</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/31/搜索基础/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-重温最短路" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/30/重温最短路/">重温最短路</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/30/重温最短路/" class="archive-article-date">
-  	<time datetime="2019-05-30T06:44:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1874" target="_blank" rel="noopener">HDU1874</a></p>
-        
-          <a class="article-more-a" href="/2019/05/30/重温最短路/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">最短路</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/30/重温最短路/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-voj1056-基础离散化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/30/voj1056-基础离散化/">voj1056 基础离散化</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/30/voj1056-基础离散化/" class="archive-article-date">
-  	<time datetime="2019-05-30T02:35:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>桌面上放了N个平行于坐标轴的矩形，这N个矩形可能有互相覆盖的部分，求它们组成的图形的面积。</p>
-        
-          <a class="article-more-a" href="/2019/05/30/voj1056-基础离散化/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">字符串</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/30/voj1056-基础离散化/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -954,8 +348,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
